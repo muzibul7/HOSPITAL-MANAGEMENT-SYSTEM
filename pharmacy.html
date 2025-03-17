@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pharmacy Orders - Medivance Hospital</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        let cart = [];
+
+        function addToCart() {
+            let medicine = document.getElementById("medicine").value;
+            let quantity = parseInt(document.getElementById("quantity").value);
+
+            if (!medicine || quantity <= 0) {
+                alert("Please select a medicine and enter a valid quantity.");
+                return;
+            }
+
+            let priceList = {
+                "Paracetamol": 10,
+                "Antibiotics": 15,
+                "Cough Syrup": 12,
+                "Pain Killers": 18,
+                "Vitamin Tablets": 20,
+                "Antiseptic Cream": 8,
+                "Bandages": 5,
+                "Eye Drops": 14,
+                "Diabetes Medicine": 25,
+                "Blood Pressure Pills": 30
+            };
+
+            let price = priceList[medicine] * quantity;
+
+            cart.push({ medicine, quantity, price });
+            alert(`${quantity} x ${medicine} added to cart!`);
+        }
+
+        function generateBill() {
+            if (cart.length === 0) {
+                alert("Your cart is empty. Please add some medicines.");
+                return;
+            }
+
+            let total = 0;
+            let billDetails = "----- BILL -----\n";
+            cart.forEach(item => {
+                billDetails += `${item.quantity} x ${item.medicine} - $${item.price}\n`;
+                total += item.price;
+            });
+
+            billDetails += `\nTotal Amount: $${total}`;
+            alert(billDetails);
+            cart = []; // Clear cart after purchase
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Pharmacy Orders</h1>
+    </header>
+
+    <p>Select your medicines below:</p>
+
+    <label for="medicine">Choose a Medicine:</label>
+    <select id="medicine" name="medicine">
+        <option value="">-- Select Medicine --</option>
+        <option value="Paracetamol">Paracetamol - $10</option>
+        <option value="Antibiotics">Antibiotics - $15</option>
+        <option value="Cough Syrup">Cough Syrup - $12</option>
+        <option value="Pain Killers">Pain Killers - $18</option>
+        <option value="Vitamin Tablets">Vitamin Tablets - $20</option>
+        <option value="Antiseptic Cream">Antiseptic Cream - $8</option>
+        <option value="Bandages">Bandages - $5</option>
+        <option value="Eye Drops">Eye Drops - $14</option>
+        <option value="Diabetes Medicine">Diabetes Medicine - $25</option>
+        <option value="Blood Pressure Pills">Blood Pressure Pills - $30</option>
+    </select>
+
+    <label for="quantity">Quantity:</label>
+    <input type="number" id="quantity" name="quantity" min="1" value="1">
+
+    <button onclick="addToCart()">Add to Cart</button>
+    <button onclick="generateBill()">Generate Bill</button>
+</body>
+</html>

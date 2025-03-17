@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports & Analytics - Medivance Hospital</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        function generateReport(event) {
+            event.preventDefault(); // Prevent page reload
+
+            let patientName = document.getElementById("patientName").value.trim();
+            let age = document.getElementById("age").value.trim();
+            let doctor = document.getElementById("doctor").value;
+            let diagnosis = document.getElementById("diagnosis").value.trim();
+            let prescription = document.getElementById("prescription").value.trim();
+
+            if (!patientName || !age || !doctor || !diagnosis || !prescription) {
+                alert("Please fill in all fields before generating the report.");
+                return;
+            }
+
+            let reportsSection = document.getElementById("reports");
+            let reportEntry = `
+                <div class="report-card">
+                    <h3>Patient: ${patientName}</h3>
+                    <p><strong>Age:</strong> ${age}</p>
+                    <p><strong>Doctor:</strong> ${doctor}</p>
+                    <p><strong>Diagnosis:</strong> ${diagnosis}</p>
+                    <p><strong>Prescription:</strong> ${prescription}</p>
+                    <hr>
+                </div>
+            `;
+
+            reportsSection.innerHTML += reportEntry;
+            document.getElementById("reportForm").reset(); // Clear form after submission
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Reports & Analytics</h1>
+    </header>
+
+    <div class="report-container">
+        <h2>Generate Patient Report</h2>
+
+        <form id="reportForm" onsubmit="generateReport(event)">
+            <label for="patientName">Patient Name:</label>
+            <input type="text" id="patientName" name="patientName" required>
+
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" min="0" required>
+
+            <label for="doctor">Attending Doctor:</label>
+            <select id="doctor" name="doctor" required>
+                <option value="">-- Select Doctor --</option>
+                <option value="Dr. A. Sharma (Cardiologist)">Dr. A. Sharma (Cardiologist)</option>
+                <option value="Dr. B. Rao (Neurologist)">Dr. B. Rao (Neurologist)</option>
+                <option value="Dr. C. Patel (Orthopedic Surgeon)">Dr. C. Patel (Orthopedic Surgeon)</option>
+                <option value="Dr. D. Verma (General Physician)">Dr. D. Verma (General Physician)</option>
+                <option value="Dr. E. Singh (Dentist)">Dr. E. Singh (Dentist)</option>
+                <option value="Dr. F. Kapoor (Pediatrician)">Dr. F. Kapoor (Pediatrician)</option>
+                <option value="Dr. G. Mehta (Pulmonologist)">Dr. G. Mehta (Pulmonologist)</option>
+                <option value="Dr. H. Iyer (Oncologist)">Dr. H. Iyer (Oncologist)</option>
+                <option value="Dr. I. Roy (Dermatologist)">Dr. I. Roy (Dermatologist)</option>
+                <option value="Dr. J. Nair (Ophthalmologist)">Dr. J. Nair (Ophthalmologist)</option>
+                <option value="Dr. K. Bose (Gynecologist)">Dr. K. Bose (Gynecologist)</option>
+            </select>
+
+            <label for="diagnosis">Diagnosis:</label>
+            <textarea id="diagnosis" name="diagnosis" rows="3" required></textarea>
+
+            <label for="prescription">Prescription:</label>
+            <textarea id="prescription" name="prescription" rows="3" required></textarea>
+
+            <button type="submit">Generate Report</button>
+        </form>
+    </div>
+
+    <div class="reports-section">
+        <h2>Generated Reports</h2>
+        <div id="reports"></div>
+    </div>
+</body>
+</html>

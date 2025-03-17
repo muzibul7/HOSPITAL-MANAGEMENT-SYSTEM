@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointments - Medivance Hospital</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        function bookAppointment(event) {
+            event.preventDefault(); // Prevent form submission for now
+
+            let patientName = document.getElementById("patientName").value.trim();
+            let contact = document.getElementById("contact").value.trim();
+            let doctor = document.getElementById("doctor").value;
+            let date = document.getElementById("date").value;
+            let time = document.getElementById("time").value;
+
+            if (!patientName || !contact || !doctor || !date || !time) {
+                alert("Please fill in all fields before booking.");
+                return;
+            }
+
+            alert(`Appointment booked successfully!\nPatient: ${patientName}\nDoctor: ${doctor}\nDate: ${date}\nTime: ${time}`);
+            document.getElementById("appointmentForm").reset(); // Clear form
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Appointment Scheduling</h1>
+    </header>
+
+    <div class="appointment-container">
+        <p>Schedule your appointment by filling out the form below:</p>
+
+        <form id="appointmentForm" onsubmit="bookAppointment(event)">
+            <label for="patientName">Patient Name:</label>
+            <input type="text" id="patientName" name="patientName" required>
+
+            <label for="contact">Contact Number:</label>
+            <input type="text" id="contact" name="contact" required>
+
+            <label for="doctor">Choose a Doctor:</label>
+            <select id="doctor" name="doctor" required>
+                <option value="">-- Select a Doctor --</option>
+                <option value="Dr. A. Sharma (Cardiologist)">Dr. A. Sharma (Cardiologist)</option>
+                <option value="Dr. B. Rao (Neurologist)">Dr. B. Rao (Neurologist)</option>
+                <option value="Dr. C. Patel (Orthopedic Surgeon)">Dr. C. Patel (Orthopedic Surgeon)</option>
+                <option value="Dr. D. Verma (General Physician)">Dr. D. Verma (General Physician)</option>
+                <option value="Dr. E. Singh (Dentist)">Dr. E. Singh (Dentist)</option>
+                <option value="Dr. F. Kapoor (Pediatrician)">Dr. F. Kapoor (Pediatrician)</option>
+                <option value="Dr. G. Mehta (Pulmonologist)">Dr. G. Mehta (Pulmonologist)</option>
+                <option value="Dr. H. Iyer (Oncologist)">Dr. H. Iyer (Oncologist)</option>
+                <option value="Dr. I. Roy (Dermatologist)">Dr. I. Roy (Dermatologist)</option>
+                <option value="Dr. J. Nair (Ophthalmologist)">Dr. J. Nair (Ophthalmologist)</option>
+                <option value="Dr. K. Bose (Gynecologist)">Dr. K. Bose (Gynecologist)</option>
+            </select>
+
+            <label for="date">Select Date:</label>
+            <input type="date" id="date" name="date" required>
+
+            <label for="time">Select Time:</label>
+            <input type="time" id="time" name="time" required>
+
+            <button type="submit">Book Appointment</button>
+        </form>
+    </div>
+</body>
+</html>

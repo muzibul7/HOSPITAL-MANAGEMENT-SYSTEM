@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Management - Medivance Hospital</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <img src="WhatsApp Image 2025-03-13 at 01.59.00_ab20c318.jpg" alt="Hospital Logo" class="hospital-logo">
+            <h1>Medivance Hospital</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="pharmacy.html">Pharmacy</a></li>
+                <li><a href="reports.html">Reports</a></li>
+                <li><a href="inventory.html">Inventory</a></li>
+                <li><a href="staff.html">Staff</a></li>
+                <li><a href="billing.html">Billing</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="banner">
+        <img src="WhatsApp Image 2025-03-13 at 01.59.01_0353df03.jpg" alt="Hospital Banner" class="banner-image">
+    </div>
+
+    <main>
+        <div class="card">
+            <h2>Staff Management</h2>
+            <div class="alert alert-success">
+                Welcome to the staff management portal
+            </div>
+
+            <!-- Staff Search and Filters -->
+            <div class="form-group">
+                <input type="text" placeholder="Search staff..." class="search-input">
+            </div>
+
+            <!-- Staff Table -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Department</th>
+                        <th>Role</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>ST001</td>
+                        <td>Dr. Sarah Johnson</td>
+                        <td>Cardiology</td>
+                        <td>Senior Physician</td>
+                        <td><span class="status-active">Active</span></td>
+                        <td>
+                            <button class="btn btn-secondary">Edit</button>
+                            <button class="btn btn-danger">Delete</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>ST002</td>
+                        <td>Dr. Michael Chen</td>
+                        <td>Neurology</td>
+                        <td>Department Head</td>
+                        <td><span class="status-active">Active</span></td>
+                        <td>
+                            <button class="btn btn-secondary">Edit</button>
+                            <button class="btn btn-danger">Delete</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>ST003</td>
+                        <td>Nurse Emma Wilson</td>
+                        <td>Emergency</td>
+                        <td>Head Nurse</td>
+                        <td><span class="status-active">Active</span></td>
+                        <td>
+                            <button class="btn btn-secondary">Edit</button>
+                            <button class="btn btn-danger">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Add New Staff Button -->
+            <button class="btn btn-primary">Add New Staff Member</button>
+        </div>
+
+        <!-- Add Staff Form -->
+        <div class="card">
+            <h3>Add New Staff Member</h3>
+            <form>
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="department">Department</label>
+                    <select id="department" required>
+                        <option value="">Select Department</option>
+                        <option value="cardiology">Cardiology</option>
+                        <option value="neurology">Neurology</option>
+                        <option value="emergency">Emergency</option>
+                        <option value="pediatrics">Pediatrics</option>
+                        <option value="surgery">Surgery</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="role">Role</label>
+                    <select id="role" required>
+                        <option value="">Select Role</option>
+                        <option value="physician">Physician</option>
+                        <option value="nurse">Nurse</option>
+                        <option value="specialist">Specialist</option>
+                        <option value="surgeon">Surgeon</option>
+                        <option value="staff">Support Staff</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <textarea id="address" rows="3"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="reset" class="btn btn-secondary">Reset</button>
+            </form>
+        </div>
+
+        <!-- Staff Statistics -->
+        <div class="dashboard-grid">
+            <div class="widget">
+                <h4>Total Staff</h4>
+                <p class="stat">156</p>
+            </div>
+            <div class="widget">
+                <h4>Doctors</h4>
+                <p class="stat">45</p>
+            </div>
+            <div class="widget">
+                <h4>Nurses</h4>
+                <p class="stat">78</p>
+            </div>
+            <div class="widget">
+                <h4>Support Staff</h4>
+                <p class="stat">33</p>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html> 

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Billing & Payments - Medivance Hospital</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        function generateBill(event) {
+            event.preventDefault(); // Prevent page reload
+
+            let patient = document.getElementById("patient").value;
+            let doctor = document.getElementById("doctor").value;
+            let diagnosis = document.getElementById("diagnosis").value.trim();
+            let treatmentCost = parseFloat(document.getElementById("treatmentCost").value);
+
+            if (!patient || !doctor || !diagnosis || !treatmentCost) {
+                alert("Please fill in all fields before generating the bill.");
+                return;
+            }
+
+            let consultationFee = {
+                "Dr. A. Sharma (Cardiologist)": 500,
+                "Dr. B. Rao (Neurologist)": 450,
+                "Dr. C. Patel (Orthopedic Surgeon)": 400,
+                "Dr. D. Verma (General Physician)": 300,
+                "Dr. E. Singh (Dentist)": 350,
+                "Dr. F. Kapoor (Pediatrician)": 320,
+                "Dr. G. Mehta (Pulmonologist)": 400,
+                "Dr. H. Iyer (Oncologist)": 600,
+                "Dr. I. Roy (Dermatologist)": 380,
+                "Dr. J. Nair (Ophthalmologist)": 420,
+                "Dr. K. Bose (Gynecologist)": 500
+            };
+
+            let totalCost = treatmentCost + (consultationFee[doctor] || 300);
+
+            let billSection = document.getElementById("bills");
+            let billEntry = `
+                <div class="bill-card">
+                    <h3>Patient: ${patient}</h3>
+                    <p><strong>Doctor:</strong> ${doctor}</p>
+                    <p><strong>Diagnosis:</strong> ${diagnosis}</p>
+                    <p><strong>Consultation Fee:</strong> $${consultationFee[doctor] || 300}</p>
+                    <p><strong>Treatment Cost:</strong> $${treatmentCost.toFixed(2)}</p>
+                    <p><strong>Total Amount:</strong> <strong>$${totalCost.toFixed(2)}</strong></p>
+                    <hr>
+                </div>
+            `;
+
+            billSection.innerHTML += billEntry;
+            document.getElementById("billingForm").reset(); // Clear form after submission
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Billing & Payments</h1>
+    </header>
+
+    <div class="billing-container">
+        <h2>Generate Patient Bill</h2>
+
+        <form id="billingForm" onsubmit="generateBill(event)">
+            <label for="patient">Select Patient:</label>
+            <select id="patient" name="patient" required>
+                <option value="">-- Select Patient --</option>
+                <option value="John Carter">John Carter</option>
+                <option value="Emily Davis">Emily Davis</option>
+                <option value="Michael Scott">Michael Scott</option>
+                <option value="Sophia Wilson">Sophia Wilson</option>
+                <option value="David Miller">David Miller</option>
+                <option value="Olivia Brown">Olivia Brown</option>
+                <option value="James Anderson">James Anderson</option>
+                <option value="Ava Taylor">Ava Taylor</option>
+                <option value="William Harris">William Harris</option>
+                <option value="Charlotte Lewis">Charlotte Lewis</option>
+            </select>
+
+            <label for="doctor">Attending Doctor:</label>
+            <select id="doctor" name="doctor" required>
+                <option value="">-- Select Doctor --</option>
+                <option value="Dr. A. Sharma (Cardiologist)">Dr. A. Sharma (Cardiologist)</option>
+                <option value="Dr. B. Rao (Neurologist)">Dr. B. Rao (Neurologist)</option>
+                <option value="Dr. C. Patel (Orthopedic Surgeon)">Dr. C. Patel (Orthopedic Surgeon)</option>
+                <option value="Dr. D. Verma (General Physician)">Dr. D. Verma (General Physician)</option>
+                <option value="Dr. E. Singh (Dentist)">Dr. E. Singh (Dentist)</option>
+                <option value="Dr. F. Kapoor (Pediatrician)">Dr. F. Kapoor (Pediatrician)</option>
+                <option value="Dr. G. Mehta (Pulmonologist)">Dr. G. Mehta (Pulmonologist)</option>
+                <option value="Dr. H. Iyer (Oncologist)">Dr. H. Iyer (Oncologist)</option>
+                <option value="Dr. I. Roy (Dermatologist)">Dr. I. Roy (Dermatologist)</option>
+                <option value="Dr. J. Nair (Ophthalmologist)">Dr. J. Nair (Ophthalmologist)</option>
+                <option value="Dr. K. Bose (Gynecologist)">Dr. K. Bose (Gynecologist)</option>
+            </select>
+
+            <label for="diagnosis">Diagnosis:</label>
+            <textarea id="diagnosis" name="diagnosis" rows="3" required></textarea>
+
+            <label for="treatmentCost">Treatment Cost ($):</label>
+            <input type="number" id="treatmentCost" name="treatmentCost" min="0" step="0.01" required>
+
+            <button type="submit">Generate Bill</button>
+        </form>
+    </div>
+
+    <div class="bills-section">
+        <h2>Generated Bills</h2>
+        <div id="bills"></div>
+    </div>
+</body>
+</html>
